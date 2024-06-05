@@ -1,0 +1,7 @@
+{
+    "tenantName": "octavenouvellepage",
+    "clientId": "fe829ac8-2ee6-4b24-8538-f14dc54225d3",
+    "policyName": "B2C_1A_SIGNUP_SIGNIN",
+    "redirectPort": 4567,
+    "scope": "openid profile offline_access"
+}
