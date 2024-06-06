@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "np-login"
+version = "0.1.0"
+description = "A FastAPI application to perform OIDC code authentication against Nouvelle Page  using PKCE"
+authors = ["Antoine Martin <antoine.martin@octave.biz>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = "^0.30.1"
+requests = "^2.32.3"
+oauthlib = "^3.2.2"
+rich = "^13.7.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

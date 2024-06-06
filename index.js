@@ -1,7 +1,7 @@
 import express from "express";
 import { Issuer, generators } from "openid-client";
 import open from "open";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 
 // Configuration for Azure AD B2C
 // Read the config.json file
@@ -41,6 +41,7 @@ app.get("/callback", async (req, res) => {
     });
     res.send("Login successful! You can close this window.");
     console.log("Token Set:", tokenSet);
+    writeFileSync("token.json", JSON.stringify(tokenSet));
   } catch (error) {
     res.send("Error during login process. Please try again.");
     console.error("Callback Error:", error);
