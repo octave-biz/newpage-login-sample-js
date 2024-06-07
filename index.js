@@ -2,6 +2,7 @@ import express from "express";
 import { Issuer, generators } from "openid-client";
 import open from "open";
 import { readFileSync, writeFileSync } from "fs";
+import { stringify } from "querystring";
 
 // Configuration for Azure AD B2C
 // Read the config.json file
@@ -39,7 +40,14 @@ app.get("/callback", async (req, res) => {
     const tokenSet = await client.callback(redirectUri, params, {
       code_verifier: codeVerifier,
     });
-    res.send("Login successful! You can close this window.");
+    const viewerParams = {
+      endpoint: "https://devtest.newpage.app/graphql/v1/graphql",
+      header: `Authorization: Bearer ${tokenSet.id_token}`,
+    };
+    const queryString = stringify(viewerParams);
+
+    res.redirect(`https://cloud.hasura.io/public/graphiql?${queryString}`);
+    // res.send("Login successful! Redirecting to API.");
     console.log("Token Set:", tokenSet);
     writeFileSync("token.json", JSON.stringify(tokenSet));
   } catch (error) {
